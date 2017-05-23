@@ -1,2 +1,2 @@
-# Comunidad_3
+# Comunidad
 Proyecto Programacion
