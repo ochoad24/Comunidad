@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comunidad
 {
-    class Propiedades_Garaje
+    class Propiedades_Garaje: Propiedades
     {
         private string estado_garaje;
         private string bodega;

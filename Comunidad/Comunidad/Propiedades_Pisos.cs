@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comunidad
 {
-    class Propiedades_Pisos
+    class Propiedades_Pisos: Propiedades
     {
         private string vivienda;
         private int numero_dormitorios;

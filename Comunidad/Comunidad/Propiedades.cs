@@ -8,11 +8,11 @@ namespace Comunidad
 {
     class Propiedades
     {
-        private string tipo;
-        private string codigo_propiedad;
-        private int metros_cuadrados;
-        private string codigo_propietario;
-        private List<string> lista_gastos;
+        protected string tipo;
+        protected string codigo_propiedad;
+        protected int metros_cuadrados;
+        protected string codigo_propietario;
+        protected string lista_gastos;
 
         public string Tipo
         {
@@ -66,7 +66,7 @@ namespace Comunidad
             }
         }
 
-        public List<string> Lista_gastos
+        public string Lista_gastos
         {
             get
             {

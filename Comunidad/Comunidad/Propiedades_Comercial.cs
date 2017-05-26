@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comunidad
 {
-    class Propiedades_Comercial
+    class Propiedades_Comercial:Propiedades
     {
         private string nombre_comercial;
         private string actividad;
