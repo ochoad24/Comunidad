@@ -279,5 +279,25 @@ namespace Comunidad
             dataGridView1.Refresh();
             leer.Close();
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            int totzonas = 0;
+            int totpropiedades = 0;
+            int totpropietarios = 0;
+            int gastos = 0;
+            for (int i=0;i<miComunidad.Count;i++)
+            { 
+                listBox1.Items.Add("Comunidad: "+ miComunidad[i].Nombre);
+                listBox1.Items.Add("Numero de Zonas: " + (totzonas = miGasto.Count));
+                listBox1.Items.Add("Numero de Propiedades: " + (totpropiedades = miGaraje.Count+ miPiso.Count+ miComercial.Count));
+                listBox1.Items.Add("Numero de Propietarios: " + (totpropietarios = miPropietario.Count));
+                for(int j=0;j<miGastoClase.Count;j++)
+                {
+                    gastos += miGastoClase[j].Importe;          
+                }
+                listBox1.Items.Add("Total de Gastos: " + (gastos));
+            }
+        }
     }
 }
