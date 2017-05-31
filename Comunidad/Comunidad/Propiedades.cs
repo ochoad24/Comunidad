@@ -12,7 +12,7 @@ namespace Comunidad
         protected string codigo_propiedad;
         protected int metros_cuadrados;
         protected string codigo_propietario;
-        protected string lista_gastos;
+        protected List<string> lista_gastos;
 
         public string Tipo
         {
@@ -66,7 +66,7 @@ namespace Comunidad
             }
         }
 
-        public string Lista_gastos
+        public List<string> Lista_gastos
         {
             get
             {
@@ -75,7 +75,7 @@ namespace Comunidad
 
             set
             {
-                lista_gastos = value;
+                lista_gastos=value;
             }
         }
     }
