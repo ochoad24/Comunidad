@@ -82,6 +82,12 @@ namespace Comunidad
                 dataGridView1.Visible = false;
                 propiedades_2();
             }
+            if (des == 10)
+            {
+                titulo.Text = "Propietarios";
+                dataGridView1.Visible = false;
+                propietarios_resumen();
+            }
         }
         private void comunidad_2()
         {
@@ -500,6 +506,44 @@ namespace Comunidad
             else
                 enviar2 = dos + " dormitorios";
             return enviar+" , "+enviar2;
+        }
+        private void propietarios_resumen()
+        {
+            comunidad_2();
+            gastos_2();
+            gastos_generales_2();
+            propietarios_2();
+            pisos_2();
+            garaje_2();
+            comerciales_2();
+            List<string> propiedadesT = new List<string>();
+            string pro_piedades="";
+            int cant_propietarios = 0;
+            for (int i = 0; i < miPropietario.Count; i++)
+            {
+                propiedadesT.Clear();
+                pro_piedades = "";
+                listBox1.Items.Add("Codigo: " + miComunidad[0].Identificación);
+                listBox1.Items.Add("Nombre Propietario: " + miPropietario[i].Nombre);
+                listBox1.Items.Add("Email: " + miPropietario[i].Email);
+                for (int j = 0; j < miPiso.Count; j++)
+                    if (miPropietario[i].Nit == miPiso[j].Codigo_propietario)
+                        propiedadesT.Add(miPiso[j].Codigo_propiedad);
+                for (int j = 0; j < miGaraje.Count; j++)
+                    if (miPropietario[i].Nit == miGaraje[j].Codigo_propietario)
+                        propiedadesT.Add(miGaraje[j].Codigo_propiedad);
+                for (int j = 0; j < miComercial.Count; j++)
+                    if (miPropietario[i].Nit == miComercial[j].Codigo_propietario)
+                        propiedadesT.Add(miComercial[j].Codigo_propiedad);
+                for (int j = 0; j < propiedadesT.Count; j++)
+                    pro_piedades += propiedadesT[j] + " , ";
+                cant_propietarios++;
+                listBox1.Items.Add("Propiedades: " + pro_piedades);
+                listBox1.Items.Add("");
+                listBox1.Items.Add("");
+                
+            }
+            listBox1.Items.Add("Total de Propietarios: " +cant_propietarios);
         }
     }
 }
