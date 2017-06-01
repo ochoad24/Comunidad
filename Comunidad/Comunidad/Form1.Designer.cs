@@ -46,6 +46,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -94,7 +97,7 @@
             // button5
             // 
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(469, 296);
+            this.button5.Location = new System.Drawing.Point(254, 266);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(175, 150);
             this.button5.TabIndex = 5;
@@ -104,7 +107,7 @@
             // button6
             // 
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.Location = new System.Drawing.Point(256, 296);
+            this.button6.Location = new System.Drawing.Point(41, 266);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(175, 150);
             this.button6.TabIndex = 6;
@@ -114,7 +117,7 @@
             // button7
             // 
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.Location = new System.Drawing.Point(41, 296);
+            this.button7.Location = new System.Drawing.Point(909, 18);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(175, 150);
             this.button7.TabIndex = 7;
@@ -124,7 +127,7 @@
             // button8
             // 
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.Location = new System.Drawing.Point(686, 296);
+            this.button8.Location = new System.Drawing.Point(909, 266);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(175, 150);
             this.button8.TabIndex = 8;
@@ -175,7 +178,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.label5.Location = new System.Drawing.Point(82, 472);
+            this.label5.Location = new System.Drawing.Point(950, 194);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 29);
             this.label5.TabIndex = 14;
@@ -185,16 +188,16 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.label6.Location = new System.Drawing.Point(307, 473);
+            this.label6.Location = new System.Drawing.Point(92, 443);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 29);
+            this.label6.Size = new System.Drawing.Size(90, 29);
             this.label6.TabIndex = 15;
-            this.label6.Text = "Garaje";
+            this.label6.Text = "Garage";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(597, 472);
+            this.label7.Location = new System.Drawing.Point(382, 442);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 16;
@@ -202,7 +205,7 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.label8.Location = new System.Drawing.Point(719, 471);
+            this.label8.Location = new System.Drawing.Point(942, 446);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 30);
             this.label8.TabIndex = 0;
@@ -212,17 +215,49 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.label9.Location = new System.Drawing.Point(488, 472);
+            this.label9.Location = new System.Drawing.Point(273, 442);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(140, 29);
             this.label9.TabIndex = 17;
             this.label9.Text = "Comerciales";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 18F);
+            this.label10.Location = new System.Drawing.Point(705, 447);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(142, 29);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Propiedades";
+            // 
+            // button9
+            // 
+            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
+            this.button9.Location = new System.Drawing.Point(686, 266);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(175, 150);
+            this.button9.TabIndex = 19;
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(0, 0);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 20;
+            this.button10.Text = "button10";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(899, 562);
+            this.ClientSize = new System.Drawing.Size(1125, 562);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -268,6 +303,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
     }
 }
 

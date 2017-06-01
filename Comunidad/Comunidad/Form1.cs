@@ -77,5 +77,11 @@ namespace Comunidad
         {
 
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Mostrar_Gridview Vista = new Mostrar_Gridview(9);
+            Vista.ShowDialog();
+        }
     }
 }

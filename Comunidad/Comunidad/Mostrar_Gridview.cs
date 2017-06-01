@@ -76,6 +76,12 @@ namespace Comunidad
                 dataGridView1.Visible = false;
                 resumen_2();
             }
+            if (des == 9)
+            {
+                titulo.Text = "Propiedades";
+                dataGridView1.Visible = false;
+                propiedades_2();
+            }
         }
         private void comunidad_2()
         {
@@ -351,7 +357,7 @@ namespace Comunidad
                             }
                             if (cont == 5)
                                 comercialT.Nombre_comercial = s;
-                            if (cont == 5)
+                            if (cont == 6)
                                 comercialT.Actividad = s;
                         }
                         cont++;
@@ -389,10 +395,111 @@ namespace Comunidad
                 listBox1.Items.Add("Total de Gastos: " + (gastos));
             }
         }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void propiedades_2()
         {
-
+            comunidad_2();
+            gastos_2();
+            gastos_generales_2();
+            propietarios_2();
+            pisos_2();
+            garaje_2();
+            comerciales_2();
+            for (int i = 0; i < miPropietario.Count; i++)
+            {
+                for (int j = 0; j < miPiso.Count; j++)
+                {
+                    if (miPropietario[i].Nit == miPiso[j].Codigo_propietario)
+                    {
+                        listBox1.Items.Add("Codigo Propiedad: " + miPiso[j].Codigo_propiedad);
+                        listBox1.Items.Add("Espacio: " + miPiso[j].Metros_cuadrados);
+                        listBox1.Items.Add("Codigo: " + miComunidad[0].Identificación);
+                        listBox1.Items.Add("Nombre Propietario: " + miPropietario[i].Nombre);
+                        listBox1.Items.Add("Cuota: " + calcular_porcentaje(miPiso[j].Lista_gastos));
+                        listBox1.Items.Add("Informacion Adiconal:"+ informacion(miPiso[j].Vivienda,miPiso[j].Numero_dormitorios.ToString()));
+                        listBox1.Items.Add("");
+                        listBox1.Items.Add("");
+                    }
+                }
+            }
+            for (int i = 0; i < miPropietario.Count; i++)
+            {
+                for (int j = 0; j < miComercial.Count; j++)
+                {
+                    if (miPropietario[i].Nit == miComercial[j].Codigo_propietario)
+                    {
+                        listBox1.Items.Add("Codigo Propiedad: " + miComercial[j].Codigo_propiedad);
+                        listBox1.Items.Add("Espacio en m^2: " + miComercial[j].Metros_cuadrados);
+                        listBox1.Items.Add("Codigo: " + miComunidad[0].Identificación);
+                        listBox1.Items.Add("Nombre Propietario: " + miPropietario[i].Nombre);
+                        listBox1.Items.Add("Cuota: " + calcular_porcentaje(miComercial[j].Lista_gastos));
+                        listBox1.Items.Add("");
+                        listBox1.Items.Add("");
+                    }
+                }
+            }
+            for (int i = 0; i < miPropietario.Count; i++)
+            {
+                for (int j = 0; j <miGaraje.Count; j++)
+                {
+                    if (miPropietario[i].Nit == miGaraje[j].Codigo_propietario)
+                    {
+                        listBox1.Items.Add("Codigo Propiedad: " + miGaraje[j].Codigo_propiedad);
+                        listBox1.Items.Add("Espacio en m^2: " + miGaraje[j].Metros_cuadrados);
+                        listBox1.Items.Add("Codigo: " + miComunidad[0].Identificación);
+                        listBox1.Items.Add("Nombre Propietario: " + miPropietario[i].Nombre);
+                        listBox1.Items.Add("Cuota: " + calcular_porcentaje(miGaraje[j].Lista_gastos));
+                        listBox1.Items.Add("Informacion Adiconal:" + informacion(miGaraje[j].Estado_garaje, miGaraje[j].Bodega));
+                        listBox1.Items.Add("");
+                        listBox1.Items.Add("");
+                    }
+                }
+            }
+            listBox1.Items.Add("Total de Propiedades:" + (miComercial.Count+miPiso.Count+miGaraje.Count));
+        }
+        private string calcular_porcentaje(List<string> Temp)
+        {
+            string enviar="";
+            string letraTemp="";
+            string temp1 = "";
+            string temp2 = "";
+            for (int i = 0; i < Temp.Count;i++)
+            {
+                temp1 = "";
+                temp2 = "";
+                int num = Temp[i].IndexOf("-");
+                letraTemp = Temp[i];
+                for(int j=0;j<num;j++)
+                {
+                    temp1 += letraTemp[j];
+                }
+                for (int x = num+1; x < letraTemp.Length; x++)
+                {
+                    temp2 += letraTemp[x];
+                }
+                enviar = enviar+temp2+" % "+temp1+" , ";
+            }
+            return enviar;
+        }
+        private string informacion(string uno, string dos)
+        {
+            string enviar = "";
+            string enviar2 = "";
+            if (uno == "VH")
+                enviar = "Vivienda Habitual";
+            else if (uno == "VN")
+                enviar = "Vivienda No Habitual";
+            else if (uno == "A")
+                enviar = "Garage Abierto";
+            else if (uno == "C")
+                enviar = "Garage Cerrado";
+            
+            if (dos == "S")
+                enviar2 = "Con bodega";
+            else if (dos == "N")
+                enviar2 = "Sin bodega";
+            else
+                enviar2 = dos + " dormitorios";
+            return enviar+" , "+enviar2;
         }
     }
 }
