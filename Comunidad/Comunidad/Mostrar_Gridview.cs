@@ -88,6 +88,18 @@ namespace Comunidad
                 dataGridView1.Visible = false;
                 propietarios_resumen();
             }
+            if (des == 11)
+            {
+                titulo.Text = "Cuota por Propiedades";
+                dataGridView1.Visible = false;
+                cuotas_propieades();
+            }
+            if (des == 12)
+            {
+                titulo.Text = "Cuota por Propietarios";
+                dataGridView1.Visible = false;
+                cuota_propietarios();
+            }
         }
         private void comunidad_2()
         {
@@ -544,6 +556,389 @@ namespace Comunidad
                 
             }
             listBox1.Items.Add("Total de Propietarios: " +cant_propietarios);
+        }
+        private void cuotas_propieades()
+        {
+            comunidad_2();
+            gastos_2();
+            gastos_generales_2();
+            propietarios_2();
+            pisos_2();
+            garaje_2();
+            comerciales_2();
+            double tot = 0;
+            int e = 0, g=0, c=0;
+            double e_p = 0, g_p = 0, c_p = 0;
+            int clk_c = 0;
+            int clk_g = 0;
+            for (int i = 0; i < miPiso.Count; i++)
+            {
+                for (int y = 0; y < miPiso[i].Lista_gastos.Count; y++)
+                {
+                    if (miPiso[i].Lista_gastos[y].Contains("C") ==true )
+                    {
+                        clk_c++;
+                    }
+                    if (miPiso[i].Lista_gastos[y].Contains("G") == true)
+                    {
+                        clk_g++;
+                    }
+                }
+            }
+            for (int i = 0; i < miGaraje.Count; i++)
+            {
+                for (int y = 0; y < miGaraje[i].Lista_gastos.Count; y++)
+                {
+                    if (miGaraje[i].Lista_gastos[y].Contains("C") == true)
+                    {
+                        clk_c++;
+                    }
+                    if (miGaraje[i].Lista_gastos[y].Contains("G") == true)
+                    {
+                        clk_g++;
+                    }
+                }
+            }
+            for (int i = 0; i < miComercial.Count; i++)
+            {
+                for (int y = 0; y < miComercial[i].Lista_gastos.Count; y++)
+                {
+                    if (miComercial[i].Lista_gastos[y].Contains("C") == true)
+                    {
+                        clk_c++;
+                    }
+                    if (miComercial[i].Lista_gastos[y].Contains("G") == true)
+                    {
+                        clk_g++;
+                    }
+                }
+            }
+            for (int j = 0; j < miPiso.Count; j++)
+            {
+                e = 0; g = 0; c = 0;
+                for (int i = 0; i < miPropietario.Count; i++)
+                {
+                    if (miPropietario[i].Nit == miPiso[j].Codigo_propietario)
+                    {
+                        listBox1.Items.Add("Propiedad: " + miPiso[j].Codigo_propiedad);
+                        listBox1.Items.Add("Nombre Propietario: " + miPropietario[i].Nombre);
+                        listBox1.Items.Add("Porcentajes: ");
+                        for (int x=0;x<miPiso[j].Lista_gastos.Count;x++)
+                        {
+                            if(miPiso[j].Lista_gastos[x].Contains('E')==true)
+                            {
+                                e += calcular_importe(1, miPiso[j].Lista_gastos[x]);
+                                e_p = porcentaje(miPiso[j].Lista_gastos[x]);
+                                listBox1.Items.Add("    %E: "+(e_p*100));
+                            }
+                            if (miPiso[j].Lista_gastos[x].Contains('C') == true)
+                            {
+                                c += calcular_importe(2, miPiso[j].Lista_gastos[x]);
+                                c_p= (((c / clk_c) * 100) / c);
+                                listBox1.Items.Add("    %C: " + ((c / clk_c)*100)/c);
+                            }
+                            if (miPiso[j].Lista_gastos[x].Contains('G') == true)
+                            {
+                                g += calcular_importe(3, miPiso[j].Lista_gastos[x]);
+                                g_p = (((g / clk_g) * 100) / g);
+                                listBox1.Items.Add("    %G: " + ((g / clk_g) * 100) / g);
+                            }
+                        }
+                        listBox1.Items.Add("Importes: ");
+                        listBox1.Items.Add("    E: "+ (e * e_p));
+                        listBox1.Items.Add("    C: "+ (c * (c_p/100)));
+                        listBox1.Items.Add("    G: "+ (g * (g_p/100)));
+                        listBox1.Items.Add("Total: "+ ((e * e_p)+ (c * (c_p / 100))+ (g * (g_p / 100))));
+                        tot += (e * e_p) + (c * (c_p / 100)) + (g * (g_p / 100));
+                    }
+                }
+            }
+            listBox1.Items.Add("");
+            for (int j = 0; j < miGaraje.Count; j++)
+            {
+                e = 0; g = 0; c = 0;
+                for (int i = 0; i < miPropietario.Count; i++)
+                {
+                    if (miPropietario[i].Nit == miGaraje[j].Codigo_propietario)
+                    {
+                        listBox1.Items.Add("Propiedad: " + miGaraje[j].Codigo_propiedad);
+                        listBox1.Items.Add("Nombre Propietario: " + miPropietario[i].Nombre);
+                        listBox1.Items.Add("Porcentajes: ");
+                        for (int x = 0; x < miGaraje[j].Lista_gastos.Count; x++)
+                        {
+                            if (miGaraje[j].Lista_gastos[x].Contains('E') == true)
+                            {
+                                e += calcular_importe(1, miGaraje[j].Lista_gastos[x]);
+                                e_p = porcentaje(miGaraje[j].Lista_gastos[x]);
+                                listBox1.Items.Add("    %E: " + (e_p * 100));
+                            }
+                            if (miGaraje[j].Lista_gastos[x].Contains('C') == true)
+                            {
+                                c += calcular_importe(2, miGaraje[j].Lista_gastos[x]);
+                                c_p = (((c / clk_c) * 100) / c);
+                                listBox1.Items.Add("    %C: " + ((c / clk_c) * 100) / c);
+                            }
+                            if (miGaraje[j].Lista_gastos[x].Contains('G') == true)
+                            {
+                                g += calcular_importe(3, miGaraje[j].Lista_gastos[x]);
+                                g_p = (((g / clk_g) * 100) / g);
+                                listBox1.Items.Add("    %G: " + ((g / clk_g) * 100) / g);
+                            }
+                        }
+                        listBox1.Items.Add("Importes: ");
+                        listBox1.Items.Add("    E: " + (e * e_p));
+                        listBox1.Items.Add("    C: " + (c * (c_p / 100)));
+                        listBox1.Items.Add("    G: " + (g * (g_p / 100)));
+                        listBox1.Items.Add("Total: " + ((e * e_p) + (c * (c_p / 100)) + (g * (g_p / 100))));
+                        tot += (e * e_p) + (c * (c_p / 100)) + (g * (g_p / 100));
+                    }
+                }
+            }
+            listBox1.Items.Add("");
+            for (int j = 0; j < miComercial.Count; j++)
+            {
+                e = 0; g = 0; c = 0;
+                for (int i = 0; i < miComercial.Count; i++)
+                {
+                    if (miPropietario[i].Nit == miComercial[j].Codigo_propietario)
+                    {
+                        listBox1.Items.Add("Propiedad: " + miComercial[j].Codigo_propiedad);
+                        listBox1.Items.Add("Nombre Propietario: " + miPropietario[i].Nombre);
+                        listBox1.Items.Add("Porcentajes: ");
+                        for (int x = 0; x < miComercial[j].Lista_gastos.Count; x++)
+                        {
+                            if (miComercial[j].Lista_gastos[x].Contains('E') == true)
+                            {
+                                e += calcular_importe(1, miComercial[j].Lista_gastos[x]);
+                                e_p = porcentaje(miComercial[j].Lista_gastos[x]);
+                                listBox1.Items.Add("    %E: " + (e_p * 100));
+                            }
+                            if (miComercial[j].Lista_gastos[x].Contains('C') == true)
+                            {
+                                c += calcular_importe(2, miComercial[j].Lista_gastos[x]);
+                                c_p = (((c / clk_c) * 100) / c);
+                                listBox1.Items.Add("    %C: " + ((c / clk_c) * 100) / c);
+                            }
+                            if (miComercial[j].Lista_gastos[x].Contains('G') == true)
+                            {
+                                g += calcular_importe(3, miComercial[j].Lista_gastos[x]);
+                                g_p = (((g / clk_g) * 100) / g);
+                                listBox1.Items.Add("    %G: " + ((g / clk_g) * 100) / g);
+                            }
+                        }
+                        listBox1.Items.Add("Importes: ");
+                        listBox1.Items.Add("    E: " + (e * e_p));
+                        listBox1.Items.Add("    C: " + (c * (c_p / 100)));
+                        listBox1.Items.Add("    G: " + (g * (g_p / 100)));
+                        listBox1.Items.Add("Total: " + ((e * e_p) + (c * (c_p / 100)) + (g * (g_p / 100))));
+                        tot += (e * e_p) + (c * (c_p / 100)) + (g * (g_p / 100));
+                    }
+                }
+            }
+            listBox1.Items.Add((miComercial.Count + miGaraje.Count + miPiso.Count) + " Propietarios " + " Total: "+ tot);
+        }
+        private int calcular_importe(int x, string dato)
+        {
+            string dato2="";
+            int numero;
+            int tot = 0;
+            for (int i = 2; i < dato.Length; i++)
+                dato2 += dato[i];
+            numero = Convert.ToInt32(dato2);
+            if (x==1)
+            {
+                for(int i=0;i<miGastoClase.Count;i++)
+                {
+                    if(miGastoClase[i].Tipo_zona_reparto=="E")
+                        tot += miGastoClase[i].Importe;
+                }
+            }
+            if (x == 2)
+            {
+                for (int i = 0; i < miGastoClase.Count; i++)
+                {
+                    if (miGastoClase[i].Tipo_zona_reparto == "C")
+                        tot += miGastoClase[i].Importe;
+                }
+            }
+            if (x == 3)
+            {
+                for (int i = 0; i < miGastoClase.Count; i++)
+                {
+                    if (miGastoClase[i].Tipo_zona_reparto == "G")
+                        tot += miGastoClase[i].Importe;
+                }
+            }
+
+            return tot;
+        }
+        private double porcentaje(string dato)
+        {
+            string dato2 = "";
+            double numero;
+            for (int i = 2; i < dato.Length; i++)
+                dato2 += dato[i];
+            numero = Convert.ToDouble(dato2);
+            numero = numero / 100;
+            return numero;
+        }
+        private void cuota_propietarios()
+        {
+            comunidad_2();
+            gastos_2();
+            gastos_generales_2();
+            propietarios_2();
+            pisos_2();
+            garaje_2();
+            comerciales_2();
+            int e = 0, g = 0, c = 0;
+            double tot=0;
+            double e_p = 0, g_p = 0, c_p = 0;
+            double e_t_p = 0, g_t_p = 0, c_t_p = 0;
+            int clk_c = 0;
+            int clk_g = 0;
+            for (int i = 0; i < miPiso.Count; i++)
+            {
+                for (int y = 0; y < miPiso[i].Lista_gastos.Count; y++)
+                {
+                    if (miPiso[i].Lista_gastos[y].Contains("C") == true)
+                    {
+                        clk_c++;
+                    }
+                    if (miPiso[i].Lista_gastos[y].Contains("G") == true)
+                    {
+                        clk_g++;
+                    }
+                }
+            }
+            for (int i = 0; i < miGaraje.Count; i++)
+            {
+                for (int y = 0; y < miGaraje[i].Lista_gastos.Count; y++)
+                {
+                    if (miGaraje[i].Lista_gastos[y].Contains("C") == true)
+                    {
+                        clk_c++;
+                    }
+                    if (miGaraje[i].Lista_gastos[y].Contains("G") == true)
+                    {
+                        clk_g++;
+                    }
+                }
+            }
+            for (int i = 0; i < miComercial.Count; i++)
+            {
+                for (int y = 0; y < miComercial[i].Lista_gastos.Count; y++)
+                {
+                    if (miComercial[i].Lista_gastos[y].Contains("C") == true)
+                    {
+                        clk_c++;
+                    }
+                    if (miPiso[i].Lista_gastos[y].Contains("G") == true)
+                    {
+                        clk_g++;
+                    }
+                }
+            }
+            for (int j = 0; j < miPropietario.Count; j++)
+            {
+                e = 0; g = 0; c = 0;
+                e_t_p = 0; g_t_p = 0; c_t_p = 0;
+                listBox1.Items.Add("CP: " + miComunidad[0].Identificación);
+                listBox1.Items.Add("Nombre Propietario: " + miPropietario[j].Nombre);
+                listBox1.Items.Add("Porcentajes: ");
+                for (int i = 0; i < miPiso.Count; i++)
+                {
+                    if (miPropietario[j].Nit == miPiso[i].Codigo_propietario)
+                    {
+                        for (int x = 0; x < miPiso[i].Lista_gastos.Count; x++)
+                        {
+                            if (miPiso[i].Lista_gastos[x].Contains('E') == true)
+                            {
+                                e = calcular_importe(1, miPiso[i].Lista_gastos[x]);
+                                e_p = porcentaje(miPiso[i].Lista_gastos[x]);
+                                e_t_p += (e_p*100);
+                            }
+                            if (miPiso[i].Lista_gastos[x].Contains('C') == true)
+                            {
+                                c += calcular_importe(2, miPiso[i].Lista_gastos[x]);
+                                c_p = (((c / clk_c) * 100) / c);
+                                c_t_p += c_p;
+                            }
+                            if (miPiso[i].Lista_gastos[x].Contains('G') == true)
+                            {
+                                g= calcular_importe(3, miPiso[i].Lista_gastos[x]);
+                                g_p = (((g / clk_g) * 100) / g);
+                                g_t_p += g_p;
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < miGaraje.Count; i++)
+                {
+                    if (miPropietario[j].Nit == miGaraje[i].Codigo_propietario)
+                    {
+                        for (int x = 0; x < miGaraje[i].Lista_gastos.Count; x++)
+                        {
+                            if (miGaraje[i].Lista_gastos[x].Contains('E') == true)
+                            {
+                                e = calcular_importe(1, miGaraje[i].Lista_gastos[x]);
+                                e_p = porcentaje(miGaraje[i].Lista_gastos[x]);
+                                e_t_p += (e_p * 100);
+                            }
+                            if (miGaraje[i].Lista_gastos[x].Contains('C') == true)
+                            {
+                                c = calcular_importe(2, miGaraje[i].Lista_gastos[x]);
+                                c_p = (((c / clk_c) * 100) / c);
+                                c_t_p += c_p;
+                            }
+                            if (miGaraje[i].Lista_gastos[x].Contains('G') == true)
+                            {
+                                g = calcular_importe(3, miGaraje[i].Lista_gastos[x]);
+                                g_p = (((g / clk_g) * 100) / g);
+                                g_t_p += g_p;
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < miComercial.Count; i++)
+                {
+                    if (miPropietario[j].Nit == miComercial[i].Codigo_propietario)
+                    {
+                        for (int x = 0; x < miPiso[j].Lista_gastos.Count; x++)
+                        {
+                            if (miComercial[i].Lista_gastos[x].Contains('E') == true)
+                            {
+                                e = calcular_importe(1, miComercial[i].Lista_gastos[x]);
+                                e_p = porcentaje(miComercial[i].Lista_gastos[x]);
+                                e_t_p += (e_p * 100);
+                            }
+                            if (miComercial[i].Lista_gastos[x].Contains('C') == true)
+                            {
+                                c = calcular_importe(2, miComercial[i].Lista_gastos[x]);
+                                c_p = (((c / clk_c) * 100) / c);
+                                c_t_p += c_p;
+                            }
+                            if (miComercial[i].Lista_gastos[x].Contains('G') == true)
+                            {
+                                g = calcular_importe(3, miComercial[i].Lista_gastos[x]);
+                                g_p = (((g / clk_g) * 100) / g);
+                                g_t_p += g_p;
+                            }
+                        }
+                    }
+                }
+                listBox1.Items.Add("    %E: " + e_t_p);
+                listBox1.Items.Add("    %C: " + c_t_p);
+                listBox1.Items.Add("    %G: " + g_t_p);
+                listBox1.Items.Add("Importes: ");
+                listBox1.Items.Add("    %E: " + (e  * Convert.ToDouble(e_t_p/100)));
+                listBox1.Items.Add("    %C: " + (c  * Convert.ToDouble(c_t_p/100)));
+                listBox1.Items.Add("    %G: " + (g  * Convert.ToDouble(g_t_p/100)));
+                listBox1.Items.Add("Total: " + ((g * Convert.ToDouble(g_t_p / 100))+ (c * Convert.ToDouble(c_t_p / 100))+ (e * Convert.ToDouble(e_t_p / 100))));
+                listBox1.Items.Add("");
+                tot += (g * Convert.ToDouble(g_t_p / 100)) + (c * Convert.ToDouble(c_t_p / 100)) + (e * Convert.ToDouble(e_t_p / 100));
+            }
+            listBox1.Items.Add(miPropietario.Count+" Propietarios "+ " Total: "+tot); 
         }
     }
 }

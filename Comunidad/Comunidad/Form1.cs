@@ -72,12 +72,6 @@ namespace Comunidad
             Mostrar_Gridview Vista = new Mostrar_Gridview(8);
             Vista.ShowDialog();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button9_Click(object sender, EventArgs e)
         {
             Mostrar_Gridview Vista = new Mostrar_Gridview(9);
@@ -87,6 +81,18 @@ namespace Comunidad
         private void button11_Click(object sender, EventArgs e)
         {
             Mostrar_Gridview Vista = new Mostrar_Gridview(10);
+            Vista.ShowDialog();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Mostrar_Gridview Vista = new Mostrar_Gridview(11);
+            Vista.ShowDialog();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Mostrar_Gridview Vista = new Mostrar_Gridview(12);
             Vista.ShowDialog();
         }
     }

@@ -50,6 +50,11 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -245,7 +250,7 @@
             // button11
             // 
             this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
-            this.button11.Location = new System.Drawing.Point(469, 266);
+            this.button11.Location = new System.Drawing.Point(909, 514);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(175, 150);
             this.button11.TabIndex = 21;
@@ -255,18 +260,72 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.label11.Location = new System.Drawing.Point(493, 447);
+            this.label11.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.label11.Location = new System.Drawing.Point(895, 691);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(138, 29);
+            this.label11.Size = new System.Drawing.Size(204, 24);
             this.label11.TabIndex = 22;
-            this.label11.Text = "Propietarios";
+            this.label11.Text = "Resumen Propietarios";
+            // 
+            // button10
+            // 
+            this.button10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button10.BackgroundImage")));
+            this.button10.Location = new System.Drawing.Point(686, 514);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(175, 150);
+            this.button10.TabIndex = 23;
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.label12.Location = new System.Drawing.Point(665, 691);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(210, 24);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "Cuotas por Propieades";
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(0, 0);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 25;
+            this.button12.Text = "button12";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            this.button13.Image = ((System.Drawing.Image)(resources.GetObject("button13.Image")));
+            this.button13.Location = new System.Drawing.Point(469, 514);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(175, 150);
+            this.button13.TabIndex = 26;
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.label14.Location = new System.Drawing.Point(450, 691);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(209, 24);
+            this.label14.TabIndex = 28;
+            this.label14.Text = "Cuota por Propietarios";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1125, 562);
+            this.ClientSize = new System.Drawing.Size(1125, 730);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.button13);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button9);
@@ -291,7 +350,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Comunidad";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,6 +378,11 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Label label14;
     }
 }
 
